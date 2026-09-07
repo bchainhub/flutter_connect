@@ -1,4 +1,4 @@
-name: Release
+name: Publish to pub.dev
 on:
   push:
     tags: ['[0-9]*.[0-9]*.[0-9]*']
@@ -20,13 +20,3 @@ jobs:
     permissions:
       id-token: write
     uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
-  release:
-    needs: publish
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
-      - run: gh release create "$GITHUB_REF_NAME" --verify-tag --generate-notes
-        env:
-          GH_TOKEN: ${{ github.token }}

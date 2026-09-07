@@ -1,16 +1,20 @@
 # Release setup
 
-CI runs formatting/linting, static checks, relevant tests and package validation. Flutter additionally builds Android and iOS simulator examples. better-connect's release also runs cross-repository Flutter interoperability. No release has been pushed or published as part of implementation.
+flutter_connect follows the publishing pattern used by flutter_licensing, flutter_paytorl and flutter_txms. A version tag push runs the shared CI checks and exact tag/version validation, then publishes through Dart's reusable pub.dev workflow. It does not create or modify a GitHub Release.
 
-1. Review the package version and changelog. Keep v1 protocol vectors identical across all three repositories.
-2. Configure repository Actions and the registry's trusted publisher for `bchainhub/flutter_connect` and `release.yml`. For npm use its GitHub OIDC trusted publishing settings; for pub.dev enable automated GitHub publishing with the `{{version}}` tag pattern. Initial package creation/ownership and registry settings must be established by maintainers.
-3. Ensure dependent repositories are pushed before cross-repository CI runs. For incompatible future protocol changes pin the integration checkout to a matching release rather than silently mixing versions.
-4. Push `<version>` to trigger validation, publication and a GitHub release. The tag must match the manifest exactly.
+1. Update `pubspec.yaml` and `CHANGELOG.md`, then commit and push the source and workflows.
+2. On pub.dev, enable automated publishing for repository `bchainhub/flutter_connect` with tag pattern `{{version}}` (no `v`).
+3. Push the tag matching the manifest:
 
-CORE License text is copied unchanged from the reference flutter_txms repository. npm metadata uses `SEE LICENSE IN LICENSE` because CORE is a custom license.
+```sh
+git tag 0.1.2
+git push origin 0.1.2
+```
 
-For better-connect, CI checks out the matching SDK source and runs `node scripts/prepare-sdk.mjs` before installing dependencies. The helper builds the ignored vendor tarball; `node scripts/sync-protocol.mjs` refreshes a local installation. Reference conformance fixtures live in `test/fixtures/` and remain versioned. Generated `vectors/` and `vendor/` directories are ignored. The published bundle includes the SDK so registry users do not need local filesystem dependencies.
+CI checks formatting, static analysis, tests, publishable package contents, and Android/iOS example builds before publication. A tag mismatch blocks publishing. Use a new version for each publication; an already published pub.dev version cannot be replaced.
 
-References: [npm trusted publishing](https://docs.npmjs.com/trusted-publishers/), [Dart publishing workflow](https://github.com/dart-lang/setup-dart/blob/main/.github/workflows/publish.yml).
+The npm packages use a different trigger: publish their GitHub Releases in the app to publish npm. For Flutter, pushing the tag is sufficient. Merely editing an existing GitHub Release does not trigger the Flutter workflow.
 
-Dependency lockfiles are ignored. npm workflows install from package.json with `--package-lock=false`; npm cache keys use package.json. Flutter workflows already resolve dependencies with `flutter pub get`.
+CORE License remains unchanged. Dependency lockfiles and generated artifacts remain ignored.
+
+See [Dart automated publishing](https://dart.dev/tools/pub/automated-publishing) for registry setup.

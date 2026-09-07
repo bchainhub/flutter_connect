@@ -1,6 +1,6 @@
 name: flutter_connect
 description: Wallet-side Connect protocol with strict transport validation, explicit approval, and multi-chain signing adapters.
-version: 0.1.1
+version: 0.1.2
 homepage: https://github.com/bchainhub/flutter_connect
 repository: https://github.com/bchainhub/flutter_connect
 issue_tracker: https://github.com/bchainhub/flutter_connect/issues
