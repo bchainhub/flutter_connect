@@ -4,7 +4,7 @@ Flutter wallet library for Connect v1. Handles full `connect://` links and QR te
 
 ```yaml
 dependencies:
-  flutter_connect: ^0.1.0
+  flutter_connect: ^0.1.1
 ```
 
 ```dart
@@ -76,3 +76,5 @@ node scripts/flutter-interop.mjs
 Shared vectors assert identical Dart/TypeScript messages. Dart Ed25519 signatures and an OpenSSL Ed448 host bridge also complete real Better Auth desktop sessions. The OpenSSL fixture requires OpenSSL 3 on the test host; it is not a mobile signing implementation. The standalone suite skips live-server tests unless the integration runner supplies its test endpoint.
 
 See [release setup](doc/RELEASE.md). Licensed under the [CORE License](LICENSE).
+
+This package is distributed under the [CORE License](LICENSE). It is not an OSI-approved license.

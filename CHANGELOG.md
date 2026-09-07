@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1
+
+- Support app_links 7.2.1; require Flutter 3.44 and Dart 3.12.
+- Document wallet approval, transport, account adapters and request lifecycle APIs.
+- Retain the CORE License, including its non-OSI status.
+
 ## 0.1.0
 
 Initial Connect v1 implementation, shared conformance vectors, security tests, examples and release automation.

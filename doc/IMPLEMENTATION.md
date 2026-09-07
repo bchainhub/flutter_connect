@@ -1,6 +1,6 @@
 # Implementation plan
 
-1. Define Connect v1, strict schemas, canonical messages and shared vectors in connect.js.
+1. Define Connect v1, strict schemas, canonical messages and shared vectors in connect-protocol.
 2. Build profile verification and atomic request transitions, then Better Auth endpoints and normal session cookies.
 3. Port wallet behavior to Dart, including lifecycle, transport and explicit approval.
 4. Exercise cryptographic substitution attacks, concurrency, cross-language bytes and real Better Auth sessions.

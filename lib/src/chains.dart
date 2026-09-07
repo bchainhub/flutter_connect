@@ -13,6 +13,8 @@ class ConnectChain {
       signatureEncoding;
   final String? publicKeyEncoding;
   final int? alg;
+
+  /// Defines a chain preset without implementing or invoking a signer.
   const ConnectChain({
     required this.name,
     required this.namespace,
@@ -23,6 +25,8 @@ class ConnectChain {
     required this.signatureEncoding,
     this.publicKeyEncoding,
   });
+
+  /// Creates an Ethereum-compatible chain using EIP-191 personal_sign proofs.
   factory ConnectChain.evm(String name, int chainId) {
     if (chainId <= 0 || chainId > 999999999999999) fail('invalidChain');
     return ConnectChain(
@@ -35,8 +39,12 @@ class ConnectChain {
       signatureEncoding: 'hex0x',
     );
   }
+
+  /// Policy entry a portal can use to accept accounts from this chain.
   SigningRequirement get requirement =>
       SigningRequirement(namespace, reference, profile, alg);
+
+  /// Binds an address claim to this chain; the portal must verify ownership.
   SigningSelection account(String address) => SigningSelection(
     account: WalletIdentity(
       namespace: namespace,
@@ -48,6 +56,7 @@ class ConnectChain {
   );
 }
 
+/// Built-in chain presets defining identities, signing methods and proof encodings.
 abstract final class ConnectChains {
   static const core = ConnectChain(
     name: 'Core Blockchain',
@@ -217,6 +226,7 @@ abstract final class ConnectChains {
   ];
 }
 
+/// Returns immutable, deduplicated requirements for the selected chains.
 List<SigningRequirement> requirementsFor(Iterable<ConnectChain> chains) {
   final result = <String, SigningRequirement>{};
   for (final chain in chains) {
@@ -228,15 +238,19 @@ List<SigningRequirement> requirementsFor(Iterable<ConnectChain> chains) {
 
 /// Connect adapter around an existing wallet's message-signing operation.
 class ChainWalletAccount implements WalletAccount {
+  /// Chain and address offered to compatible Connect requests.
   @override
   final SigningSelection selection;
   final Future<WalletSignature> Function(Uint8List) _sign;
+
+  /// Adapts a host signer; the callback must preserve the canonical bytes.
   ChainWalletAccount({
     required ConnectChain chain,
     required String address,
-    required Future<WalletSignature> Function(Uint8List) sign,
-  }) : selection = chain.account(address),
-       _sign = sign;
+    required this._sign,
+  }) : selection = chain.account(address);
+
+  /// Delegates canonical bytes to the host wallet without exporting its key.
   @override
   Future<WalletSignature> sign(Uint8List canonicalPayload) =>
       _sign(canonicalPayload);
