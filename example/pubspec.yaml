@@ -1,0 +1,19 @@
+name: connect_wallet_example
+description: Connect wallet reference application using an ephemeral Ed25519 test account.
+publish_to: none
+version: 0.1.0+1
+environment:
+  sdk: '>=3.9.0 <4.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_connect:
+    path: ../
+  cryptography: ^2.7.0
+  qr_flutter: ^4.1.0
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+flutter:
+  uses-material-design: true
