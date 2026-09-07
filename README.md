@@ -4,7 +4,7 @@ Flutter wallet library for Connect v1. Handles full `connect://` links and QR te
 
 ```yaml
 dependencies:
-  flutter_connect: ^0.1.1
+  flutter_connect: ^0.1.2
 ```
 
 ```dart

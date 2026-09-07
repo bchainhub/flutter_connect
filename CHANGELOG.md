@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.2
+
+- Align publishing with the Flutter reference libraries: validate on tag push, then publish through Dart's reusable pub.dev workflow.
+- Remove automatic GitHub Release creation; retain exact version-tag validation and CORE License.
+
 ## 0.1.1
 
 - Support app_links 7.2.1; require Flutter 3.44 and Dart 3.12.
