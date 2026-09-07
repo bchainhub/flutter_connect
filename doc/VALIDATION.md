@@ -1,12 +1,19 @@
 # Implementation validation — 2026-09-07
 
-Implemented locally in flutter_connect, connect.js and better-connect. No commits, pushes, tags or registry publications were made in the target repositories.
+## 0.1.1 validation
+
+Local pana 0.23.18 reports 150/160 points. Documentation scores 20/20 with 64 of 161 public API elements documented (39.8%); dependency support scores 40/40, including latest-version compatibility and lower-bound analysis. The remaining 10 points require an OSI-approved license; CORE License is intentionally retained unchanged.
+
+The package now requires Flutter 3.44 and Dart 3.12 to support app_links 7.2.1. Static analysis, Flutter tests, and Android/iOS simulator builds pass. Registry scores will update only after this version is published and analyzed by pub.dev.
+
+
+Implemented locally in flutter_connect, connect-protocol and better-connect. No commits, pushes, tags or registry publications were made in the target repositories.
 
 ## Results
 
 | Check | Result |
 | --- | --- |
-| connect.js browser API/unit/conformance/lifecycle suite | 39 passed |
+| connect-protocol browser API/unit/conformance/lifecycle suite | 39 passed |
 | Chromium browser and installed-package verification | All 17 proof fixtures, fresh Core flow, lifecycle checks and static example passed |
 | better-connect cryptographic/security/SQLite/client suite | 54 passed |
 | Flutter standalone suite | 27 passed; the 17 live-server cases run separately below |
@@ -30,7 +37,7 @@ Local toolchain: Node 24.2.0, Flutter 3.47.2 / Dart 3.13.2, OpenSSL 3.6.4, Bette
 
 ## Delivered architecture and support
 
-connect.js owns the browser-only API, strict v1 schemas, canonicalization, wallet adapters and local signature verification. It has no server, HTTP dapp client or request store. better-connect owns the backend request engine, Node Monero loading, persistent adapter storage, HTTP endpoints and Better Auth session cookies. Flutter ports the wallet protocol to Dart and adds app_links lifecycle integration. Shared vectors verify canonical bytes across all three packages.
+connect-protocol owns the browser-only API, strict v1 schemas, canonicalization, wallet adapters and local signature verification. It has no server, HTTP dapp client or request store. better-connect owns the backend request engine, Node Monero loading, persistent adapter storage, HTTP endpoints and Better Auth session cookies. Flutter ports the wallet protocol to Dart and adds app_links lifecycle integration. Shared vectors verify canonical bytes across all three packages.
 
 Named presets and built-in verification cover Core Blockchain, Ethereum, Polygon, Base, Bitcoin, Solana, BNB Smart Chain, TRON, Monero, Stellar, Litecoin, XRP, Zcash and Cardano, plus alternate Bitcoin legacy and XRP Ed25519 methods. Raw Ed25519 remains supported. [CHAINS.md](CHAINS.md) specifies address limits and encoding rules. Tests cover every chain through real signature verification, unrelated-key substitution, message-field changes, network/algorithm mismatches and one-time redemption. Additional checks use the official Core and Stellar vectors, independent Emurgo CIP-8 signing, Cardano protected-header and credential tampering, and rejection of Monero view-key authentication.
 
