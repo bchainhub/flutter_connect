@@ -12,3 +12,7 @@ export 'src/chains.dart';
 
 export 'src/handoff.dart';
 export 'src/bluetooth.dart';
+
+export 'src/operations.dart';
+export 'src/operation_channel.dart';
+export 'src/wallet_validation.dart';

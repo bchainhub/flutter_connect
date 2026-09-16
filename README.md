@@ -78,3 +78,15 @@ Shared vectors assert identical Dart/TypeScript messages. Dart Ed25519 signature
 See [release setup](doc/RELEASE.md). Licensed under the [CORE License](LICENSE).
 
 This package is distributed under the [CORE License](LICENSE). It is not an OSI-approved license.
+
+# Wallet Operations
+
+Connect transports signing requests; the host wallet owns and uses the private key.
+
+`ConnectOperation`, `OperationResponse`, `OperationCapability` and `OperationDispatcher` implement the canonical connect-protocol operation format. Chain adapters validate native payloads and declare capabilities. Wallet/custom operations require explicit host approval; read-only chain operations use separate handlers. Existing account providers supply identities without exposing keys or invoking authentication signers.
+
+See the [operation protocol and API guide](doc/OPERATIONS.md) and [EVM, Bitcoin PSBT, Solana, Core and balance examples](example/lib/operations.dart). `OperationTransport` handles host messaging, and `OperationCipher` optionally encrypts requests/responses. Existing authentication, links and handoffs remain unchanged.
+
+## Wallet address validation
+
+`validateWalletAccount` checks addresses against an explicit Connect namespace/reference and returns `valid`, `invalid`, or `unsupported`. `isValidWalletAccount` accepts only `valid`. These checks supplement wallet ownership verification. See [coverage, adapter integration and package compatibility](doc/WALLET_VALIDATION.md).
