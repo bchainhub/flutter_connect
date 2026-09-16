@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.3
+
+- Add optional chain-aware wallet address validation and shared checksum/network fixtures.
+
+- Add interoperable multi-chain Wallet Operations models, capabilities, adapters, explicit approval, dispatch, safe errors and encrypted transport codecs.
+- Add shared protocol/encryption fixtures, regression coverage and host integration examples.
+- Retain existing authentication protocol and APIs.
+
 ## 0.1.2
 
 - Align publishing with the Flutter reference libraries: validate on tag push, then publish through Dart's reusable pub.dev workflow.
