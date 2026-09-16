@@ -14,7 +14,7 @@ dependencies:
   app_links: ^7.2.1
   bluetooth_low_energy: ^6.2.1
   cryptography: ^2.9.0
-  flutter_wallet_validator: 0.1.4
+  flutter_wallet_validator: ^0.1.4
 dev_dependencies:
   flutter_test:
     sdk: flutter
