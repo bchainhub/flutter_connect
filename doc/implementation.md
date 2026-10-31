@@ -9,8 +9,8 @@
 Research: CAIP-122 provides field vocabulary; Ethereum uses a valid EIP-4361 message with Connect bindings in Resources. Other profiles use a fixed ASCII line format, never JSON serialization. Ed448 = -53; Ed25519 = -19 (IANA/RFC9864). XCB address derivation is SHA3-256(publicKey)[12:] plus network prefix and ICAN checksum in go-core. No XCB registration was found in the CAIP namespace registry: use explicitly local namespace core, not an asserted registered CAIP identifier. Generic Ed25519 uses an explicitly raw-key identity. Bitcoin support will be limited to BIP322 simple P2WPKH. Wallet signing remains delegated to host implementations.
 
 Sources:
-- https://better-auth.com/docs/plugins/siwe
-- https://better-auth.com/docs/concepts/plugins
+- https://better-auth.com/doc/plugins/siwe
+- https://better-auth.com/doc/concepts/plugins
 - https://standards.chainagnostic.org/CAIPs/caip-2
 - https://standards.chainagnostic.org/CAIPs/caip-10
 - https://standards.chainagnostic.org/CAIPs/caip-122

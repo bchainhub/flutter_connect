@@ -16,3 +16,11 @@ export 'src/bluetooth.dart';
 export 'src/operations.dart';
 export 'src/operation_channel.dart';
 export 'src/wallet_validation.dart';
+
+export 'src/providers.dart';
+
+export 'src/wallet_provider.dart';
+
+export 'src/wallet_discovery.dart';
+
+export 'src/provider_abi.dart' show encodeWalletContract, decodeWalletContract;

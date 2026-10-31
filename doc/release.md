@@ -7,8 +7,8 @@ flutter_connect follows the publishing pattern used by flutter_licensing, flutte
 3. Push the tag matching the manifest:
 
 ```sh
-git tag 0.1.2
-git push origin 0.1.2
+git tag 0.2.0
+git push origin 0.2.0
 ```
 
 CI checks formatting, static analysis, tests, publishable package contents, and Android/iOS example builds before publication. A tag mismatch blocks publishing. Use a new version for each publication; an already published pub.dev version cannot be replaced.
