@@ -4,7 +4,7 @@
 
 ## Wire format
 
-The primary app handoff embeds the challenge and pairing key in a URI fragment and needs no server lookup. See [nearby and offline transport](NEARBY.md). Canonical signature bytes remain unchanged. The short-URI HTTP lookup below is an optional Better Auth compatibility transport.
+The primary app handoff embeds the challenge and pairing key in a URI fragment and needs no server lookup. See [nearby and offline transport](nearby.md). Canonical signature bytes remain unchanged. The short-URI HTTP lookup below is an optional Better Auth compatibility transport.
 
 `connect://example.com/connect/v1/<requestId>` maps to `https://example.com/api/auth/wallet-connect/challenge?requestId=<requestId>`.
 
@@ -34,7 +34,7 @@ Ethereum uses an ERC-4361 message constructed by `canonicalMessage`, with the sa
 
 ## Profiles
 
-The original profiles below remain stable. [Chain profiles and adapters](CHAINS.md) specify the expanded set, named presets, and extension APIs.
+The original profiles below remain stable. [Chain profiles and adapters](chains.md) specify the expanded set, named presets, and extension APIs.
 
 | Profile | Namespace / reference | Algorithm | Identity verification |
 | --- | --- | --- | --- |
@@ -45,7 +45,7 @@ The original profiles below remain stable. [Chain profiles and adapters](CHAINS.
 
 The local `core` and `raw` namespaces are explicitly protocol-local identifiers, not claims of CAIP registration. The raw-key profile does not claim to implement Solana or another Ed25519 chain. XCB uses pure RFC8032 Ed448 over these exact canonical bytes (empty context); do not pass the bytes to a Core wallet API that adds a personal-message prefix or hashes them again. This is an explicit Connect signing method, not an alias for Core transaction signing. Address derivation is checked against a go-core reference vector. Host wallets using CIP-98 derived keys need a compatible native signer; private keys never enter the SDK API.
 
-Ethereum personal_sign is not generic COSE ES256K. Contract accounts/ERC-1271 are currently rejected by the EOA profile. The BIP-322 profile rejects P2SH, P2TR and arbitrary scripts. A separate `bitcoin-signmessage` profile supports legacy P2PKH. See [chain profiles](CHAINS.md) for all additional networks, exact wrappers, proof encodings and address limits. Future profiles must define full canonical signing and key/account verification semantics; they cannot weaken an existing profile.
+Ethereum personal_sign is not generic COSE ES256K. Contract accounts/ERC-1271 are currently rejected by the EOA profile. The BIP-322 profile rejects P2SH, P2TR and arbitrary scripts. A separate `bitcoin-signmessage` profile supports legacy P2PKH. See [chain profiles](chains.md) for all additional networks, exact wrappers, proof encodings and address limits. Future profiles must define full canonical signing and key/account verification semantics; they cannot weaken an existing profile.
 
 ## Endpoints and lifecycle
 

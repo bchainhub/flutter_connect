@@ -6,4 +6,4 @@ The example uses a freshly generated in-memory Ed25519 account. Configure better
 
 For Core and Ethereum wallets, replace DemoAccounts with your native account provider as described in the package README. XCB signs pure canonical Ed448 bytes; Ethereum uses personal_sign over the canonical SIWE bytes. Do not put private keys in application configuration or source files.
 
-Platform registration and HTTPS association instructions are in [PLATFORMS.md](../doc/PLATFORMS.md). `flutter test` runs the initial-screen widget test. The sibling better-connect integration runner exercises actual Dart signatures and desktop session redemption.
+Platform registration and HTTPS association instructions are in [platforms.md](../doc/platforms.md). `flutter test` runs the initial-screen widget test. The sibling better-connect integration runner exercises actual Dart signatures and desktop session redemption.

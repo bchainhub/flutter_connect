@@ -81,7 +81,7 @@ Monero verification lazily loads monero-project WASM through monero-ts, operates
 ## Standards and references
 
 - [SIWE / ERC-4361](https://eips.ethereum.org/EIPS/eip-4361), [BIP-322](https://github.com/bitcoin/bips/blob/master/bip-0322.mediawiki).
-- [Solana keys and PDAs](https://solana.com/docs/core/pda), [TRON signMessageV2](https://tronweb.network/docu/docs/API%20List/trx/signMessageV2/).
+- [Solana keys and PDAs](https://solana.com/doc/core/pda), [TRON signMessageV2](https://tronweb.network/docu/doc/API%20List/trx/signMessageV2/).
 - [Stellar SEP-53](https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0053.md), [XRP keypairs](https://github.com/XRPLF/xrpl.js/tree/main/packages/ripple-keypairs).
 - [Monero wallet RPC](https://www.getmonero.org/resources/developer-guides/wallet-rpc.html), [monero-ts](https://github.com/woodser/monero-ts).
 - [Cardano CIP-8](https://cips.cardano.org/cip/CIP-8), [CIP-30](https://cips.cardano.org/cip/CIP-30), [CIP-34](https://cips.cardano.org/cip/CIP-34).
