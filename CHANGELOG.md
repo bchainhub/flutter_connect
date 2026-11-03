@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1
+
+- Add a document-start native WebView provider bridge exposing `window.connect` and `window.core`, CIP-6963 discovery, and PayTo payment requests through the host wallet.
+- Bind bridge requests to the main document, restrict injection to HTTPS and local development origins, and retain host-controlled permissions and payment confirmation.
+- Refresh dependency resolution to the latest compatible versions and align the example's cryptography minimum with the library.
+
 ## 0.2.0
 
 - Add configurable provider identity, blockchain globals and universal multi-chain wallet routing, including Monero and Zcash.

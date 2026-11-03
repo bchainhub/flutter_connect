@@ -7,8 +7,8 @@ flutter_connect follows the publishing pattern used by flutter_licensing, flutte
 3. Push the tag matching the manifest:
 
 ```sh
-git tag 0.2.0
-git push origin 0.2.0
+git tag 0.2.1
+git push origin 0.2.1
 ```
 
 CI checks formatting, static analysis, tests, publishable package contents, and Android/iOS example builds before publication. A tag mismatch blocks publishing. Use a new version for each publication; an already published pub.dev version cannot be replaced.
@@ -18,3 +18,7 @@ The npm packages use a different trigger: publish their GitHub Releases in the a
 CORE License remains unchanged. Dependency lockfiles and generated artifacts remain ignored.
 
 See [Dart automated publishing](https://dart.dev/tools/pub/automated-publishing) for registry setup.
+
+## Prepared 0.2.1
+
+The local release validation is recorded in [validation.md](validation.md#021-validation--2026-11-03). Commit the complete release changes, including the new WebView provider implementation and tests, before pushing tag `0.2.1`. The tag triggers publication; preparation alone does not publish anything. Keep the CORE License unchanged and do not add generated lockfiles or build artifacts.

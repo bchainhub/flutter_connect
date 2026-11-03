@@ -1,6 +1,52 @@
-# Implementation validation — 2026-09-07
+# Implementation validation
 
-## 0.1.1 validation
+
+## 0.2.1 validation — 2026-11-03
+
+Dependency refresh rechecked on 2026-11-03: `flutter pub upgrade --major-versions` in both the library and example found no further upgrades. All direct and development dependencies are current; upstream/SDK-constrained transitive versions remain unchanged. Formatting, analysis, standalone/browser/example tests, authenticated interoperability, Android APK and iOS simulator builds, and a clean-snapshot publish dry run were repeated successfully.
+
+Prepared locally with Flutter 3.47.2, Dart 3.13.2, and pana 0.23.19. No commits, tags, pushes, or publications were performed.
+
+| Check | Result |
+| --- | --- |
+| Package version and release examples | 0.2.1; pub.dev still reports 0.2.0 as latest, and 0.2.1 is available |
+| Formatting and static analysis | Passed; no source formatting changes or analyzer findings |
+| Standalone Flutter tests | 206 passed; 17 server-dependent tests skipped here and exercised below |
+| Chrome provider, action and discovery tests | 8 passed |
+| Example tests | 2 passed |
+| Local Better Auth interoperability runner | 18 Dart tests passed, including 17 completed authenticated sessions |
+| Offline encrypted handoff interoperability | 18 Dart tests and 18 Node tests passed |
+| Android example debug build | Passed |
+| iOS simulator example debug build | Passed |
+| Publish dry run from clean staging copy | Passed; zero warnings |
+| Pana | 150/160 points |
+
+Scoring breakdown: conventions 20/30, documentation 20/20, platforms 20/20, static analysis 50/50, dependencies 40/40. The existing CORE License is not recognized as an OSI license, accounting for the missing 10 points; it was not changed. Dartdoc completed with zero warnings/errors, and 142 of 509 public API elements have documentation comments (27.9%). The installed SDK's `dart doc` wrapper did not accept pana's full argument set; final scoring used the standalone dartdoc selected by pana instead.
+
+All direct and development dependencies are at their latest published versions. The example now requires cryptography ^2.9.0, matching the library. No dependency overrides were added. Newer versions of bluez, dbus, material_color_utilities and test_api remain constrained by upstream packages or the Flutter SDK; the example additionally inherits qr's constraint from qr_flutter. Dependency resolution and pana's lower-bound analysis pass.
+
+The normal worktree publish dry run reports modified Git files because release changes are uncommitted. A staging copy containing the current tracked and untracked, non-ignored release sources validates with zero warnings. Generated lockfiles remain ignored. Android's successful build emits an upstream bluetooth_low_energy_android Kotlin Gradle migration notice.
+
+Commands used:
+
+```sh
+flutter pub upgrade --major-versions
+flutter pub upgrade --major-versions --directory example
+dart format --output=none --set-exit-if-changed lib test example/lib example/test
+flutter analyze
+flutter test --no-pub
+flutter test --no-pub --platform chrome test/provider_actions_web_test.dart test/providers_web_test.dart test/wallet_discovery_web_test.dart
+(cd example && flutter test --no-pub)
+node ../better-connect/scripts/flutter-interop.mjs
+(cd example && flutter build apk --debug --no-pub)
+(cd example && flutter build ios --simulator --debug --no-pub)
+flutter pub publish --dry-run
+dart pub global run pana --json --flutter-sdk /path/to/flutter .
+```
+
+On this macOS host, tests used the Xcode macOS SDK through `SDKROOT`, and Android builds used Android Studio's bundled Java 21 through `JAVA_HOME`. Browser tests used the installed Chrome executable. Live interoperability uses a local test server and ephemeral test accounts; no production service or wallet transaction is exercised. This is not a physical-device Bluetooth or multi-device test. Pub.dev's public score updates only after publication and registry analysis.
+
+## 0.1.1 validation — 2026-09-07 (historical)
 
 Local pana 0.23.18 reports 150/160 points. Documentation scores 20/20 with 64 of 161 public API elements documented (39.8%); dependency support scores 40/40, including latest-version compatibility and lower-bound analysis. The remaining 10 points require an OSI-approved license; CORE License is intentionally retained unchanged.
 
