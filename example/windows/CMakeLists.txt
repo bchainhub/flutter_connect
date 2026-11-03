@@ -57,6 +57,19 @@ add_subdirectory("runner")
 # them to the application.
 include(flutter/generated_plugins.cmake)
 
+# bluetooth_low_energy_windows 6.2.1 enables C++20 but also passes legacy /await.
+# MSVC 14.51 rejects its experimental coroutine headers (STL1011). Keep standard
+# C++20 coroutines and remove only that plugin's obsolete compiler option.
+if(MSVC AND TARGET bluetooth_low_energy_windows_plugin)
+	get_target_property(bluetooth_options bluetooth_low_energy_windows_plugin COMPILE_OPTIONS)
+	if(bluetooth_options)
+		list(REMOVE_ITEM bluetooth_options /await)
+		set_property(TARGET bluetooth_low_energy_windows_plugin PROPERTY COMPILE_OPTIONS "${bluetooth_options}")
+	endif()
+	target_compile_features(bluetooth_low_energy_windows_plugin PRIVATE cxx_std_20)
+endif()
+
+
 
 # === Installation ===
 # Support files are copied into place next to the executable, so that it can

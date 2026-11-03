@@ -52,3 +52,7 @@ Sources: [Flutter deep links](https://docs.flutter.dev/ui/navigation/deep-linkin
 Android requires minSdk 24. Add `BLUETOOTH_ADVERTISE` and `BLUETOOTH_CONNECT` to the manifest, plus legacy `BLUETOOTH` and `BLUETOOTH_ADMIN` with `android:maxSdkVersion="30"`. The peripheral requests runtime permission when starting. iOS and macOS require `NSBluetoothAlwaysUsageDescription`; macOS also needs its Bluetooth entitlement if sandboxed. The example includes Android/iOS configuration. Keep the app foregrounded for advertising; background operation is not implemented.
 
 Check `ConnectBluetoothPeripheral.isSupportedPlatform` before constructing it. Show and confirm the requested origin before calling `start()`, publish `request.response` only after approval, and call `stop()` on cancellation or disposal. A full handoff URI intentionally carries a fragment; the legacy short lookup URI does not. See [wire framing and fallback channels](nearby.md).
+
+## Windows coroutine compatibility
+
+The example removes the legacy `/await` compiler option from the `bluetooth_low_energy_windows_plugin` target after loading Flutter's generated plugin rules. Version 6.2.1 already requests C++20; standard coroutines work without `/await`, while Visual Studio 2026 rejects the legacy experimental headers with STL1011. Keep this target-specific adjustment when using that plugin version with recent MSVC. Other applications consuming flutter_connect need the same adjustment in their Windows CMake project until the upstream Bluetooth plugin removes `/await`.
