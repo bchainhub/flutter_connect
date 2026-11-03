@@ -24,3 +24,5 @@ export 'src/wallet_provider.dart';
 export 'src/wallet_discovery.dart';
 
 export 'src/provider_abi.dart' show encodeWalletContract, decodeWalletContract;
+
+export 'src/webview_providers.dart';

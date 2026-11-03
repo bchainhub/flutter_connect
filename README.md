@@ -4,7 +4,7 @@ Flutter wallet library for Connect v1. Handles full `connect://` links and QR te
 
 ```yaml
 dependencies:
-  flutter_connect: ^0.2.0
+  flutter_connect: ^0.2.1
 ```
 
 ```dart
@@ -182,3 +182,20 @@ chains have local ABI codecs, including arrays and tuples; Ethereum EOA message
 verification is local. Configure the selected wallet's `ethereumRpcMethods` or
 `coreRpcMethods`. See [current support](doc/blockchains.md) and
 [contracts](doc/smart-contracts.md) for native formats and remaining limits.
+
+### Native WebViews
+
+Use `WebViewProviders.script(info: ProviderInfo(name: 'Your wallet', rdns: 'your.wallet'), channel: 'WalletBridge')`
+as a main-frame-only document-start user script. It exposes `window.connect.request`
+and `window.core.request`, with CIP-6963 discovery. This bridge currently routes Core;
+other blockchains are rejected. The host supplies the supported RPC/operation handlers,
+permission prompts and payment confirmation; injection does not grant account access.
+
+The native channel receives JSON `{id, documentId, method, params}`. Before handling
+it, compare `documentId` with the main document's `WebViewProviders.documentProperty`
+using the WebView controller, and revoke the session on every navigation. Deliver
+JSON `{id, ok: true, result}` or `{id, ok: false, error: {code, message}}` through
+`window[WebViewProviders.replyProperty](reply)`. Never trust a page-supplied origin.
+Only HTTPS documents and HTTP loopback development documents receive providers.
+PayTo links are intercepted as `wallet_requestPayment` requests; the host must validate
+the URI and request explicit confirmation before any payment.
