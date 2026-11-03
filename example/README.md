@@ -1,6 +1,6 @@
 # Connect reference wallet
 
-Run `flutter pub get` and `flutter run` on Android/iOS. The example registers `connect://`, receives cold/warm links, and accepts QR-decoded or pasted URI text through its input field. It displays validated relying-party and account information and signs only after the Approve button is pressed.
+Run `flutter pub get` and `flutter run` on Android, iOS, macOS, Windows or Linux. Android/iOS and macOS register `connect://`; Windows/Linux require host URL registration for external links. The example receives cold/warm links on configured platforms, and accepts QR-decoded or pasted URI text through its input field. It displays validated relying-party and account information and signs only after the Approve button is pressed.
 
 The example uses a freshly generated in-memory Ed25519 account. Configure better-connect with `{ namespace: 'raw', reference: 'ed25519', profile: 'raw-ed25519', alg: -19 }`. The key is lost when the application restarts; this is a test wallet, not a persistent account manager.
 

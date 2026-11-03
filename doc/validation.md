@@ -1,6 +1,18 @@
 # Implementation validation
 
 
+## Desktop validation — 2026-11-03
+
+The example now includes macOS, Linux and Windows runners. The desktop CI matrix runs analysis, package tests, example tests and a debug example build on each operating system. Linux CI installs GTK/CMake/Ninja dependencies; Windows CI makes OpenSSL available for the Ed448 fixture.
+
+| Platform | Local result |
+| --- | --- |
+| macOS ARM64 | Analysis passed; 206 package tests and 2 example tests passed; debug app built |
+| Linux ARM64 (Debian 12 Docker) | Analysis passed; 206 package tests and 2 example tests passed; debug app built |
+| Windows | CI configured; not executed locally because no Windows runner or authenticated GitHub CLI was available |
+
+Both local platforms used Flutter 3.47.2 and Dart 3.13.2. The 17 live-server cases are skipped in these standalone desktop runs; authenticated interoperability was verified separately in the 0.2.1 validation below. This validation does not exercise physical Bluetooth devices or Windows/Linux external URL registration. Workflow syntax passed actionlint. Windows and x86_64 Linux execution remains pending CI after pushing these changes.
+
 ## 0.2.1 validation — 2026-11-03
 
 Dependency refresh rechecked on 2026-11-03: `flutter pub upgrade --major-versions` in both the library and example found no further upgrades. All direct and development dependencies are current; upstream/SDK-constrained transitive versions remain unchanged. Formatting, analysis, standalone/browser/example tests, authenticated interoperability, Android APK and iOS simulator builds, and a clean-snapshot publish dry run were repeated successfully.
